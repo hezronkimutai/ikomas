@@ -15,7 +15,7 @@ export default function Category({ category }: any) {
     }, [])
     return (
         <div className="flex flex-col bg-gray-100 my-2 m-0 rounded-[10px] p-2">
-            <div className="flex sm:flex-row md:flex-row flex-row justify-between">
+            <div className="flex sm:flex-row md:flex-row flex-col justify-between">
                 <CategoryBanner category={category} />
                 <CategoryDetails category={category} />
             </div>
