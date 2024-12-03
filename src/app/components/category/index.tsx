@@ -9,17 +9,17 @@ import CategoryProducts from "./CategoryProducts";
 export default function Category({ category }: any) {
     const [categoryProducts, setCategoryProducts] = useState([])
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products/category/jewelery')
+        fetch(`https://fakestoreapi.com/products/category/${category}`)
             .then(res => res.json())
             .then(json => setCategoryProducts(json))
     }, [])
     return (
-        <div className="flex flex-col bg-gray-100 my-2 rounded-[10px] p-2">
+        <div className="flex flex-col bg-gray-100 my-2 m-0 rounded-[10px] p-2">
             <div className="flex sm:flex-row md:flex-row flex-row justify-between">
                 <CategoryBanner category={category} />
                 <CategoryDetails category={category} />
             </div>
-            <CategoryProducts categoryProducts={categoryProducts} />
+            <CategoryProducts categoryProducts={categoryProducts.slice(0, 4)} />
         </div>
     );
 }
