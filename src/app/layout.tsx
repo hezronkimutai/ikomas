@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import ChatBubble from './assets/ChatBubble.svg'
+import Home from './assets/Home.svg'
+import ShoppingCart from './assets/ShoppingCart.svg'
+import User from './assets/User.png'
+import Image from "next/image";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,12 +34,40 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased px-4 py-2 m-0 min-h-screen flex flex-col`}
       >
         {/* Fixed Navbar */}
-        <nav className="fixed bottom-0  sm:top-0 md:top-0  lg:bottom-0  h-[60px]  w-full bg-white p-4 z-10">
+        <nav className="fixed bottom-0  sm:top-0 md:top-0  lg:bottom-0 h-[60px]  w-full bg-white p-4 z-10">
           <ul className="flex space-x-6">
-            <li>Home</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>Contact</li>
+            <li>
+              <Image
+                src={Home}
+                alt="Home"
+                height={20}
+                width={20}
+              />
+            </li>
+            <li>
+              <Image
+                src={ShoppingCart}
+                alt="ShoppingCart"
+                height={20}
+                width={20}
+              />
+            </li>
+            <li>
+              <Image
+                src={ChatBubble}
+                alt="ChatBubble"
+                height={20}
+                width={20}
+              />
+            </li>
+            <li>
+              <Image
+                src={User}
+                alt="User"
+                height={20}
+                width={20}
+              />
+            </li>
           </ul>
         </nav>
 
