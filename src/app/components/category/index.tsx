@@ -1,25 +1,31 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAppContext } from "@/context/AppContext";
 import CategoryBanner from "./CategoryBanner";
 import CategoryDetails from "./CategoryDetails";
-import CategoryProducts from "./CategoryProducts";
+import CategoryProductList from "./CategoryProductList";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function Category({ category }: any) {
-    const [categoryProducts, setCategoryProducts] = useState([])
+interface CategoryProps {
+    category: string;
+}
+
+export default function Category({ category }: CategoryProps) {
+    const { fetchCategoryProducts } = useAppContext();
+    const [categoryProducts, setCategoryProducts] = useState<any[]>([]);
+
     useEffect(() => {
-        fetch(`https://fakestoreapi.com/products/category/${category}`)
-            .then(res => res.json())
-            .then(json => setCategoryProducts(json))
-    }, [])
+        fetchCategoryProducts(category).then(setCategoryProducts);
+    }, [category, fetchCategoryProducts]);
+
     return (
         <div className="flex flex-col bg-gray-100 my-2 m-0 rounded-[10px] p-2">
             <div className="flex sm:flex-row md:flex-row flex-col justify-between">
-                <CategoryBanner category={category} />
+                <CategoryBanner />
                 <CategoryDetails category={category} />
             </div>
-            <CategoryProducts categoryProducts={categoryProducts.slice(0, 4)} />
+            <CategoryProductList categoryProducts={categoryProducts.slice(0, 4)} />
         </div>
     );
 }

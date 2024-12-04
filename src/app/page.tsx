@@ -1,19 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useAppContext } from "@/context/AppContext"; // Adjust the import path accordingly
 import Category from "./components/category";
 
 export default function Home() {
-  const [categories, setCategories] = useState([])
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products/categories')
-      .then(res => res.json())
-      .then(json => setCategories(json));
-  }, []);
+  const { categories } = useAppContext();
 
   return (
     <div className="w-[90%] mx-auto">
-      {categories.map((category, index) => <Category category={category} key={index} />)}
+      {categories.map((category, index) => (
+        <Category category={category} key={index} />
+      ))}
     </div>
   );
 }
